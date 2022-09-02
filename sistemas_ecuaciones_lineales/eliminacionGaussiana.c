@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXCOL 4
-#define MAXROW 4
+#define MAXCOL 10
+#define MAXROW 10
 
 void readTxt (double [MAXROW][MAXCOL], double [MAXROW], int *, int *);
 void printMatrix (double [MAXROW][MAXCOL], double [MAXROW], int, int);
@@ -86,13 +86,16 @@ void pivot (double m[MAXROW][MAXCOL], int rows, int columns, int i){
 }
 
 void retrosustitucion (double m[MAXROW][MAXCOL], double b[MAXROW], double x[MAXROW], int rows, int columns){
-    x[rows-1] = b[rows-1]/m[rows-1][columns-1];
-    for (int i = rows-2; i < 0; --i) {
+    double value = 0;
+    value = b[rows-1]/m[rows-1][columns-1];
+    x[rows-1] = value;
+    for (int i = rows-2; i >= 0; --i) {
         double sum = 0;
         for (int j = i+1; j < columns; ++j) {
             sum = sum + m[i][j] * x[j];
         }
-        x[i] = (b[i] - sum) / m[i][i];
+        value = (b[i] - sum) / m[i][i];
+        x[i] = value;
     }
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {
