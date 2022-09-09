@@ -8,7 +8,7 @@ void readTxt (double [MAXROW][MAXCOL], double [MAXROW], int *, int *);
 void printMatrix (double [MAXROW][MAXCOL], double [MAXROW], int, int);
 void triangulation (double [MAXROW][MAXCOL], double [MAXROW], int, int);
 void retrosustitucion (double [MAXROW][MAXCOL], double [MAXROW], double [MAXROW], int, int);
-void pivot (double [MAXROW][MAXCOL], int, int, int);
+void pivot (double [MAXROW][MAXCOL], double [MAXROW], int, int, int);
 
 int main(int argc, char *argv[]){
     double matrix[MAXROW][MAXCOL];
@@ -58,7 +58,7 @@ void printMatrix (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int colu
 
 void triangulation (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns){
     for (int i = 0; i < rows-1; ++i) {
-        pivot(m, rows, columns, i);
+        pivot(m, b, rows, columns, i);
         for (int j = i+1; j < rows; ++j) {
             double factor = -m[j][i]/m[i][i];
             for (int k = 0; k < columns; ++k) {
@@ -70,16 +70,19 @@ void triangulation (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int co
     printMatrix(m, b, rows, columns);
 }
 
-void pivot (double m[MAXROW][MAXCOL], int rows, int columns, int i){
+void pivot (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns, int i){
     double tolerance = pow(10, -3);
     if(fabs(m[i][i])<tolerance){
         for (int j = i+1; j < rows; ++j) {
             if(fabs(m[j][i])>fabs(m[i][i])){
-                for (int k = j; k < columns; ++k) {
+                for (int k = i; k < columns; ++k) {
                     double swap = m[i][k];
                     m[i][k] = m[j][k];
                     m[j][k] = swap;
                 }
+                double swap = b[i];
+                b[i] = b[j];
+                b[j] = swap;
             }
         }
     }
