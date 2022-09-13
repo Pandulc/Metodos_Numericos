@@ -7,7 +7,7 @@ int menu();
 double funcion(double x);
 double funcionAux(double x);
 void biseccion();
-void regula_falsi();
+void regulaFalsi();
 void puntoFijo();
 void newton_raphson();
 void secante();
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
                 biseccion();
                 break;
             case 2:
-                regula_falsi();
+                regulaFalsi();
                 break;
             case 3:
                 puntoFijo();
@@ -104,7 +104,7 @@ void biseccion(){
     printf("El problema fue resuelto en %d iteraciones\n", iteracion);
 }
 
-void regula_falsi(){
+void regulaFalsi(){
     double a, b, cn, cv, tolerancia, e;
     int iteracion = 0;
     printf("Recuerde haber definido previamente la funcion al inicio del codigo\nIngrese el limite inferior del intervalo\n");
