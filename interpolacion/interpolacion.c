@@ -3,6 +3,8 @@
 
 #define MAXROW 10
 #define MAXCOL 2
+#define MAXCOL2 3
+
 
 int menu();
 void readTxtI (double[MAXROW][MAXCOL], int *);
@@ -11,10 +13,10 @@ void lagrange(double[MAXROW][MAXCOL], int);
 void polynomial (double[MAXROW][MAXCOL], int);
 
 
-void printMatrix (double [MAXROW][MAXCOL], double [MAXROW], int, int);
-void triangulation (double [MAXROW][MAXCOL], double [MAXROW], int, int);
-void retrosustitucion (double [MAXROW][MAXCOL], double [MAXROW], double [MAXROW], int, int);
-void pivot (double [MAXROW][MAXCOL], double [MAXROW], int, int, int);
+void printMatrix (double [MAXROW][MAXCOL2], double [MAXROW], int, int);
+void triangulation (double [MAXROW][MAXCOL2], double [MAXROW], int, int);
+void retrosustitucion (double [MAXROW][MAXCOL2], double [MAXROW], double [MAXROW], int, int);
+void pivot (double [MAXROW][MAXCOL2], double [MAXROW], int, int, int);
 
 double f(double x){
     return x + 2/x;
@@ -83,7 +85,7 @@ void printMatrixI (double m[MAXROW][MAXCOL], int rows){
     printf("-------------------\n");
 }
 
-void printMatrix (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns){
+void printMatrix (double m[MAXROW][3], double b[MAXROW], int rows, int columns){
     double diagonal = 1;
     for(int i=0;i<rows;i++)
     {
@@ -126,7 +128,7 @@ void polynomial (double m[MAXROW][MAXCOL], int rows){
 
     for(int i = 0; i<rows; i++){
         for(int j = 0; j<rows;j++){
-            printf("Elemento %d%d = %lf\n",i,j,pow(m[i][0], j));
+            printf("Elemento %d%d = %lf\n",i,j, pow(m[i][0], j));
             A[i][j] = pow(m[i][0], j);
         }
         B[i] = m[i][1];
@@ -139,7 +141,7 @@ void polynomial (double m[MAXROW][MAXCOL], int rows){
 
 }
 
-void triangulation (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns){
+void triangulation (double m[MAXROW][3], double b[MAXROW], int rows, int columns){
     for (int i = 0; i < rows-1; ++i) {
         pivot(m, b, rows, columns, i);
         for (int j = i+1; j < rows; ++j) {
@@ -153,7 +155,7 @@ void triangulation (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int co
     printMatrix(m, b, rows, columns);
 }
 
-void pivot (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns, int i){
+void pivot (double m[MAXROW][3], double b[MAXROW], int rows, int columns, int i){
     double tolerance = pow(10, -3);
     if(fabs(m[i][i])<tolerance){
         for (int j = i+1; j < rows; ++j) {
@@ -171,8 +173,8 @@ void pivot (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns, i
     }
 }
 
-void retrosustitucion (double m[MAXROW][MAXCOL], double b[MAXROW], double x[MAXROW], int rows, int columns){
-    double value = 0;
+void retrosustitucion (double m[MAXROW][3], double b[MAXROW], double x[MAXROW], int rows, int columns){
+    double value;
     value = b[rows-1]/m[rows-1][columns-1];
     x[rows-1] = value;
     for (int i = rows-2; i >= 0; --i) {

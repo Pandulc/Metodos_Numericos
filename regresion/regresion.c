@@ -11,6 +11,8 @@ void printMatrixI(double[MAXROW][MAXCOL], int);
 
 void buildMatrix(double [MAXROW][MAXCOL], double [MAXROW][MAXCOLM], double [MAXROW], int, int);
 
+void error (double [MAXROW], double [MAXROW][MAXCOL], int, int);
+
 void triangulation(double [MAXROW][MAXCOLM], double [MAXROW], int, int);
 
 void retrosustitucion(double [MAXROW][MAXCOLM], double [MAXROW], double [MAXROW], int, int);
@@ -29,6 +31,7 @@ int main(int argc, char *argv[]) {
 
     printf("Ingrese el grado del polinomio\n");
     scanf("%d", &p);
+    p = p+1; //Correccion por no consideracion del termino a0
     readTxtI(nodes, &rows);
     printMatrixI(nodes, rows);
     buildMatrix(nodes, m, b, rows, p);
@@ -39,6 +42,7 @@ int main(int argc, char *argv[]) {
     triangulation(m, b, p, p);
     printf("---------------------------------------\n");
     retrosustitucion(m, b, x, p, p);
+    error(x, nodes, p, rows);
 }
 
 void readTxtI(double m[MAXROW][MAXCOL], int *rows) {
@@ -95,6 +99,29 @@ void buildMatrix(double n[MAXROW][MAXCOL], double m[MAXROW][MAXCOLM], double b[M
             m[i][j] = sumx;
         }
     }
+
+}
+
+void error (double a[MAXROW], double n[MAXROW][MAXCOL], int p, int rows){
+    double yb = 0;
+    double e = 0;
+    double st = 0;
+    double r;
+    for (int i = 0; i < rows; ++i) {
+        double sum = 0;
+        for (int j = 0; j < p; ++j) {
+            sum = sum + a[j]*pow(n[i][0], j);
+        }
+        e = e + pow(n[i][1]-sum, 2);
+        yb = yb + n[i][1];
+    }
+    yb = yb/(rows+1);
+    for (int i = 0; i < rows; ++i) {
+        st = st + pow(n[i][1]-yb, 2);
+    }
+    r = sqrt(fabs(e-st)/st);
+    printf("El error es de: %lf\n", e);
+    printf("El coeficiente de correlacion es: %lf\n", r);
 }
 
 void triangulation(double m[MAXROW][MAXCOLM], double b[MAXROW], int rows, int columns) {

@@ -9,6 +9,8 @@ add_executable(iterativos sistemas_ecuaciones_lineales/iterativos.c)
 add_executable(interpolacion interpolacion/interpolacion.c)
 add_executable(regresion regresion/regresion.c)
 
+target_link_libraries(interpolacion m)
+target_link_libraries(regresion m)
 
 
 
