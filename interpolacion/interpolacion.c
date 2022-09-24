@@ -3,7 +3,7 @@
 
 #define MAXROW 10
 #define MAXCOL 2
-#define MAXCOL2 3
+#define MAXCOL2 5
 
 
 int menu();
@@ -85,7 +85,7 @@ void printMatrixI (double m[MAXROW][MAXCOL], int rows){
     printf("-------------------\n");
 }
 
-void printMatrix (double m[MAXROW][3], double b[MAXROW], int rows, int columns){
+void printMatrix (double m[MAXROW][MAXCOL2], double b[MAXROW], int rows, int columns){
     double diagonal = 1;
     for(int i=0;i<rows;i++)
     {
@@ -140,7 +140,7 @@ void polynomial (double m[MAXROW][MAXCOL], int rows){
 
 }
 
-void triangulation (double m[MAXROW][3], double b[MAXROW], int rows, int columns){
+void triangulation (double m[MAXROW][MAXCOL2], double b[MAXROW], int rows, int columns){
     for (int i = 0; i < rows-1; ++i) {
         pivot(m, b, rows, columns, i);
         for (int j = i+1; j < rows; ++j) {
@@ -154,7 +154,7 @@ void triangulation (double m[MAXROW][3], double b[MAXROW], int rows, int columns
     printMatrix(m, b, rows, columns);
 }
 
-void pivot (double m[MAXROW][3], double b[MAXROW], int rows, int columns, int i){
+void pivot (double m[MAXROW][MAXCOL2], double b[MAXROW], int rows, int columns, int i){
     double tolerance = pow(10, -3);
     if(fabs(m[i][i])<tolerance){
         for (int j = i+1; j < rows; ++j) {
@@ -172,7 +172,7 @@ void pivot (double m[MAXROW][3], double b[MAXROW], int rows, int columns, int i)
     }
 }
 
-void retrosustitucion (double m[MAXROW][3], double b[MAXROW], double x[MAXROW], int rows, int columns){
+void retrosustitucion (double m[MAXROW][MAXCOL2], double b[MAXROW], double x[MAXROW], int rows, int columns){
     double value;
     value = b[rows-1]/m[rows-1][columns-1];
     x[rows-1] = value;
