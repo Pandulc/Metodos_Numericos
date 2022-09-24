@@ -10,6 +10,8 @@ void triangulation (double [MAXROW][MAXCOL], double [MAXROW], int, int);
 void retrosustitucion (double [MAXROW][MAXCOL], double [MAXROW], double [MAXROW], int, int);
 void pivot (double [MAXROW][MAXCOL], double [MAXROW], int, int, int);
 
+double norma(double [MAXROW][MAXCOL], double [MAXROW], int, int);
+
 int main(int argc, char *argv[]){
     double matrix[MAXROW][MAXCOL];
     double b[MAXROW];
@@ -48,12 +50,14 @@ void printMatrix (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int colu
         for(int j=0;j<columns;j++)
         {
             printf("%lf ",m[i][j]);
+
         }
         printf("%lf",b[i]);
         diagonal = diagonal * m[i][i];
         printf("\n");
     }
     printf("Diagonal: %lf\n", diagonal);
+    printf("Norma Euclidiana: %lf\n", norma(m,b,rows,columns));
 }
 
 void triangulation (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns){
@@ -102,7 +106,18 @@ void retrosustitucion (double m[MAXROW][MAXCOL], double b[MAXROW], double x[MAXR
     }
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {
-        printf("x%d = %lf\n",i,x[i]);
+        printf("x%d = %lf\n",i+1,x[i]);
     }
+}
+
+double norma (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns){
+    double norma = 1;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < columns; ++j) {
+            norma = norma + pow(m[i][j],2);
+        }
+    }
+    norma = sqrt(norma);
+    return norma;
 }
 

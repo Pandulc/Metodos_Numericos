@@ -19,7 +19,7 @@ void retrosustitucion (double [MAXROW][MAXCOL2], double [MAXROW], double [MAXROW
 void pivot (double [MAXROW][MAXCOL2], double [MAXROW], int, int, int);
 
 double f(double x){
-    return x + 2/x;
+    return exp(-pow(x,2));
 }
 
 int main(int argc, char *argv[]) {
@@ -128,7 +128,6 @@ void polynomial (double m[MAXROW][MAXCOL], int rows){
 
     for(int i = 0; i<rows; i++){
         for(int j = 0; j<rows;j++){
-            printf("Elemento %d%d = %lf\n",i,j, pow(m[i][0], j));
             A[i][j] = pow(m[i][0], j);
         }
         B[i] = m[i][1];
@@ -186,7 +185,16 @@ void retrosustitucion (double m[MAXROW][3], double b[MAXROW], double x[MAXROW], 
         x[i] = value;
     }
     printf("Polinomio Interpolador: \n");
-    for (int i = 0; i < rows; ++i) {
-        printf("%lf.x^%d+",x[i],i);
+    int pow = 0;
+    for (int i = 0; i <= rows - 1; i++) {
+        if (pow == 0)
+            printf("%lf", x[i]);
+        else {
+            if (x[i] >= 0)
+                printf(" + %lf.x^%d ", x[i], pow);
+            else
+                printf(" %lf.x^%d", x[i], pow);
+        }
+        pow++;
     }
 }
