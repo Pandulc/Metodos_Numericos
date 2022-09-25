@@ -3,7 +3,7 @@
 
 #define MAXROW 10
 #define MAXCOL 2
-#define MAXCOL2 5
+#define MAXCOL2 3
 
 
 int menu();
@@ -19,7 +19,7 @@ void retrosustitucion (double [MAXROW][MAXCOL2], double [MAXROW], double [MAXROW
 void pivot (double [MAXROW][MAXCOL2], double [MAXROW], int, int, int);
 
 double f(double x){
-    return exp(-pow(x,2));
+    return ;
 }
 
 int main(int argc, char *argv[]) {
@@ -91,9 +91,9 @@ void printMatrix (double m[MAXROW][MAXCOL2], double b[MAXROW], int rows, int col
     {
         for(int j=0;j<columns;j++)
         {
-            printf("%lf ",m[i][j]);
+            printf("%E ",m[i][j]);
         }
-        printf("%lf",b[i]);
+        printf("%E",b[i]);
         diagonal = diagonal * m[i][i];
         printf("\n");
     }
@@ -118,14 +118,14 @@ void lagrange (double m[MAXROW][MAXCOL], int rows){
         sum = sum + m[i][1]*product;
     }
     e = fabs(f(x)-sum);
-    printf("El valor interpolado para %lf es: %lf, con un error de %lf", x, sum, e);
+    printf("El valor interpolado para %lf es: %E, con un error de %E", x, sum, e);
 }
 
 void polynomial (double m[MAXROW][MAXCOL], int rows){
     double A[rows][rows];
     double B[rows];
     double x[rows];
-
+    printf("Recuerde haber cambiado el valor de MAXCOL2, correspondiente al tamanio de la matriz de coeficientes\n");
     for(int i = 0; i<rows; i++){
         for(int j = 0; j<rows;j++){
             A[i][j] = pow(m[i][0], j);
@@ -191,9 +191,9 @@ void retrosustitucion (double m[MAXROW][MAXCOL2], double b[MAXROW], double x[MAX
             printf("%lf", x[i]);
         else {
             if (x[i] >= 0)
-                printf(" + %lf.x^%d ", x[i], pow);
+                printf(" + %E.x^%d ", x[i], pow);
             else
-                printf(" %lf.x^%d", x[i], pow);
+                printf(" %E.x^%d", x[i], pow);
         }
         pow++;
     }

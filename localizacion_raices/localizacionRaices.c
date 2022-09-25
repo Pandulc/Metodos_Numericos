@@ -22,11 +22,11 @@ void secante();
 // DEFINICION DE f(x)
 
 double funcion(double x) {
-    return x * cosh(10 / x) - x - 6;
+    return ;
 }
 
 double funcionAux(double x) {
-    return cosh(10 / x) - x * sinh(10 / x) * (10 / pow(x, 2));
+    return ;
 }
 
 int main(int argc, char *argv[]) {
@@ -69,7 +69,7 @@ int menu() {
 }
 
 void biseccion() {
-    double a, b, cn, cv, tolerancia, e;
+    double a, b, cn = 0, cv, tolerancia, e = 0;
     int iteracion = 0;
     printf("Recuerde haber definido previamente la funcion al inicio del codigo\nIngrese el limite inferior del intervalo\n");
     scanf("%lf", &a);
@@ -109,7 +109,7 @@ void biseccion() {
 }
 
 void regulaFalsi() {
-    double a, b, cn, cv, tolerancia, e;
+    double a, b, cn = 0, cv, tolerancia, e = 0;
     int iteracion = 0;
     printf("Recuerde haber definido previamente la funcion al inicio del codigo\nIngrese el limite inferior del intervalo\n");
     scanf("%lf", &a);
@@ -184,8 +184,6 @@ void newton_raphson() {
     scanf("%lf", &tolerancia);
     tolerancia = pow(10, -tolerancia);
     do {
-        //double lim = (funcion(cv+0.01)- funcion(cv))/0.01;
-        //if(fabs(lim) < (0.001)){
         if (fabs(funcionAux(cv)) < (0.00001)) {
             printf("El metodo diverge (|f'(x)| cercano a 0)");
             break;

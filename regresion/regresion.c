@@ -19,6 +19,8 @@ void retrosustitucion(double [MAXROW][MAXCOLM], double [MAXROW], double [MAXROW]
 
 void pivot(double [MAXROW][MAXCOLM], double [MAXROW], int, int, int);
 
+void polynomial (double [MAXROW], int);
+
 
 void printMatrix(double [MAXROW][MAXCOLM], double [MAXROW], int, int);
 
@@ -43,6 +45,7 @@ int main(int argc, char *argv[]) {
     printf("---------------------------------------\n");
     retrosustitucion(m, b, x, p, p);
     error(x, nodes, p, rows);
+    polynomial(x, p);
 }
 
 void readTxtI(double m[MAXROW][MAXCOL], int *rows) {
@@ -51,15 +54,15 @@ void readTxtI(double m[MAXROW][MAXCOL], int *rows) {
     float k;
     readPtr = fopen("data.txt", "r");
     fscanf(readPtr, "%d", &n);
-    *rows = n;
 
-    for (i = 0; i < *rows; i++) {
+    for (i = 0; i < n; i++) {
         for (j = 0; j < MAXCOL; j++) {
             fscanf(readPtr, "%f", &k);
             m[i][j] = k;
         }
     }
     fclose(readPtr);
+    *rows = n;
 }
 
 void printMatrixI(double m[MAXROW][MAXCOL], int rows) {
@@ -105,6 +108,7 @@ void buildMatrix(double n[MAXROW][MAXCOL], double m[MAXROW][MAXCOLM], double b[M
 void error (double a[MAXROW], double n[MAXROW][MAXCOL], int p, int rows){
     double yb = 0;
     double e = 0;
+    double ecm;
     double st = 0;
     double r;
     for (int i = 0; i < rows; ++i) {
@@ -120,7 +124,9 @@ void error (double a[MAXROW], double n[MAXROW][MAXCOL], int p, int rows){
         st = st + pow(n[i][1]-yb, 2);
     }
     r = sqrt(fabs(e-st)/st);
+    ecm = sqrt(e/rows);
     printf("El error es de: %lf\n", e);
+    printf("El error cuadratico medio es de: %lf\n", ecm);
     printf("El coeficiente de correlacion es: %lf\n", r);
 }
 
@@ -173,3 +179,21 @@ void retrosustitucion(double m[MAXROW][MAXCOLM], double b[MAXROW], double x[MAXR
         printf("x%d = %lf\n", i, x[i]);
     }
 }
+
+void polynomial (double x[MAXROW], int p){
+    printf("Polinomio: \n");
+    int pow = 0;
+    for (int i = 0; i <= p - 1; i++) {
+        if (pow == 0)
+            printf("%lf", x[i]);
+        else {
+            if (x[i] >= 0)
+                printf(" + %E.x^%d ", x[i], pow);
+            else
+                printf(" %E.x^%d", x[i], pow);
+        }
+        pow++;
+    }
+}
+
+

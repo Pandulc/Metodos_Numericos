@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXCOL 10
-#define MAXROW 10
+#define MAXCOL 15
+#define MAXROW 15
 
 int menu();
 
@@ -42,9 +42,9 @@ int main(int argc, char *argv[]) {
             case 3:
                 relajacion(matrix, b, rows, columns);
                 break;
-            case 4:
-                jacobiAlt(matrix, b, rows, columns);
-                break;
+                /*case 4:
+                    jacobiAlt(matrix, b, rows, columns);
+                    break;*/
             default:
                 printf("La opcion ingresada no es valida. Ingrese una opcion valida porfavor");
 
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 int menu() {
     int op = 0;
     printf("\n---------------------------------------------------------\n---------------------------------------------------------\n");
-    printf("Seleccione el metodo a utilizar: \n1- Jacobi \n2- Gauss-Seidel \n3- Relajacion \n4- Jacobi Alternativo \n0- Finalizar programa\n");
+    printf("Seleccione el metodo a utilizar: \n1- Jacobi \n2- Gauss-Seidel \n3- Relajacion \n0- Finalizar programa\n");
     printf("---------------------------------------------------------\n---------------------------------------------------------\n");
     scanf("%d", &op);
     return op;
@@ -143,14 +143,14 @@ void jacobi(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns) {
 
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {
-        printf("x%d = %lf\n", i + 1, xn[i]);
+        printf("x%d = %E\n", i + 1, xn[i]);
     }
-    printf("Error: %lf\nIteraciones: %d", error, iterations);
+    printf("Error: %E\nIteraciones: %d", error, iterations);
 }
 
 //Ejercicio 3 guia 4
 
-void jacobiAlt (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns) {
+/*void jacobiAlt (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns) {
     double xv[MAXROW] = {0, 0, 0, 0, 0};
     double xn[MAXROW] = {0, 0, 0, 0, 0};
     double tolerance;
@@ -209,15 +209,19 @@ void jacobiAlt (double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int column
 
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {
-        printf("x%d = %lf\n", i + 1, xn[i]);
+        printf("x%d = %E\n", i + 1, xn[i]);
     }
-    printf("Error: %lf\nIteraciones: %d", error, iterations);
+    printf("Error: %E\nIteraciones: %d", error, iterations);
 }
+ */
 
 void gauss_seidel(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns) {
     double xv[MAXROW] = {0, 0, 0, 0, 0};
     double xn[MAXROW] = {0, 0, 0, 0, 0};
-    double tolerance = pow(10, -11);
+    double tolerance;
+    printf("Ingrese la cantidad de cifras decimales de exactitud\n");
+    scanf("%lf", tolerance);
+    tolerance = pow(10, -tolerance);
     double error;
     int iterations = 0;
 
@@ -250,7 +254,7 @@ void gauss_seidel(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int colu
         }
 
         //Metodo largo y complicado//
-        
+
         /*if(i==0){
             double sum = 0;
             
@@ -300,9 +304,9 @@ void gauss_seidel(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int colu
 
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {
-        printf("x%d = %lf\n", i + 1, xn[i]);
+        printf("x%d = %E\n", i + 1, xn[i]);
     }
-    printf("Error: %lf\nIteraciones: %d", error, iterations);
+    printf("Error: %E\nIteraciones: %d", error, iterations);
 }
 
 void relajacion(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns) {
@@ -341,7 +345,7 @@ void relajacion(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int column
             }
             xn[i] = (b[i] - sum) / m[i][i];
             error = error + pow((xn[i] - xv[i]), 2);
-            xn[i] = cte * xn[i] + (1-cte)*xv[i];
+            xn[i] = cte * xn[i] + (1 - cte) * xv[i];
             xv[i] = xn[i];
         }
 
@@ -355,7 +359,7 @@ void relajacion(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int column
 
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {
-        printf("x%d = %lf\n", i + 1, xn[i]);
+        printf("x%d = %E\n", i + 1, xn[i]);
     }
-    printf("Error: %lf\nIteraciones: %d", error, iterations);
+    printf("Error: %E\nIteraciones: %d", error, iterations);
 }
