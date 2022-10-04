@@ -33,6 +33,8 @@ int main(int argc, char *argv[]) {
     printMatrix(matrix, b, rows, columns);
     triangulation(matrix, b, rows, columns);
     retrosustitucion(matrix, b, x, rows, columns);
+
+    return 0;
 }
 
 void readTxt(double m[MAXROW][MAXCOL], double b[MAXROW], int *rows, int *columns) {

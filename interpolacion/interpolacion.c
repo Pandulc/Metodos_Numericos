@@ -3,7 +3,7 @@
 
 #define MAXROW 10
 #define MAXCOL 2
-#define MAXCOL2 3
+#define MAXCOL2 4
 
 
 int menu();
@@ -19,7 +19,7 @@ void retrosustitucion (double [MAXROW][MAXCOL2], double [MAXROW], double [MAXROW
 void pivot (double [MAXROW][MAXCOL2], double [MAXROW], int, int, int);
 
 double f(double x){
-    return ;
+    return x+2/x;
 }
 
 int main(int argc, char *argv[]) {
@@ -44,6 +44,8 @@ int main(int argc, char *argv[]) {
                 break;
         }
     }while(option != 0);
+
+    return 0;
 }
 
 int menu(){

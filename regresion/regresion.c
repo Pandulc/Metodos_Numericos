@@ -46,6 +46,8 @@ int main(int argc, char *argv[]) {
     retrosustitucion(m, b, x, p, p);
     error(x, nodes, p, rows);
     polynomial(x, p);
+
+    return 0;
 }
 
 void readTxtI(double m[MAXROW][MAXCOL], int *rows) {
