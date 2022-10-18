@@ -10,6 +10,7 @@ add_executable(interpolacion interpolacion/interpolacion.c)
 add_executable(interpolacion_segmentaria interpolacion/interpolacionSegmentaria.c)
 add_executable(regresion regresion/regresion.c)
 add_executable(integracion integracion/newtonCotes.c)
+add_executable(integracionGauss integracion/gaussLegendre.c)
 
 target_link_libraries(interpolacion m)
 target_link_libraries(regresion m)
@@ -18,6 +19,6 @@ target_link_libraries(iterativos m)
 target_link_libraries(localizacion_raices  m)
 target_link_libraries(eliminacion_gaussiana m)
 target_link_libraries(integracion m)
-
+target_link_libraries(integracionGauss m)
 
 
