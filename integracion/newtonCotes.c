@@ -84,12 +84,12 @@ void simpson() {
     double h = (b - a) / intervals;
     double sum = f(a) + f(b);
 
-    for (int i = 1; i < (intervals/2); ++i) {
-        double x = a + 2*i*h;
-        sum = sum + 2*f(x) + 4*f(x-h);
+    for (int i = 1; i < (intervals / 2); ++i) {
+        double x = a + 2 * i * h;
+        sum = sum + 2 * f(x) + 4 * f(x - h);
     }
 
-    sum = (h/3)*(sum + 4*f(b-h));
+    sum = (h / 3) * (sum + 4 * f(b - h));
 
     printf("El valor de la integral es de: %lf", sum);
 }

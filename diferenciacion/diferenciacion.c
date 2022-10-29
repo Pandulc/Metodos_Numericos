@@ -4,8 +4,6 @@
 
 int menu();
 
-int saveResult(double r);
-
 void firstOrder();
 
 void secondOrder();
