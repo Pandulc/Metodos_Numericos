@@ -2,9 +2,8 @@
 #include <math.h>
 
 double f(double x, double y) {
-    return (2 * x + 1) * sqrt(y);
+    return (2*x+1)* sqrt(y);
 }
-
 
 int main(int argc, char *argv[]) {
 
@@ -13,7 +12,7 @@ int main(int argc, char *argv[]) {
     printf("Ingrese la cantidad de subintervalos (n) \n");
     scanf("%d", &n);
 
-    double xf, x[n + 1], y[n + 1], y2[n + 1], y3[n + 1], Q[n+1], yp, xp, h;
+    double xf, x[n + 1], y[n + 1], y2[n + 1], y3[n + 1], Q[n + 1], yp, xp, h;
 
     printf("Ingrese el valor inicial (x0) \n");
     scanf("%lf", &x[0]);
@@ -47,31 +46,4 @@ int main(int argc, char *argv[]) {
 
     fprintf(file, "%lf\t%lf\n", x[n], y[n]);
 
-    for (int i = 0; i < n; ++i) {
-
-        yp = y2[i] + (h / 2) * f(x[i], y2[i]);
-        xp = x[i] + h / 2;
-        y2[i + 1] = yp + (h / 2) * f(xp, yp);
-
-    }
-
-    for (int i = 0; i < n; ++i) {
-
-        yp = y3[i] + (h / 4) * f(x[i], y3[i]);
-        xp = x[i] + h / 4;
-        yp = yp + (h / 4) * f(xp, yp);
-        xp = x[i] + h / 4;
-        yp = yp + (h / 4) * f(xp, yp);
-        xp = x[i] + h / 4;
-        y3[i + 1] = yp + (h / 4) * f(xp, yp);
-
-    }
-    fclose(file);
-
-    file = fopen("coef.txt", "w");
-
-    for (int i = 0; i < n + 1; ++i) {
-        Q[i] = (1/ log(2)) * log((y[i] - y2[i])/(y2[i]-y3[i]));
-        fprintf(file, "%lf\n", Q[i]);
-    }
 }
