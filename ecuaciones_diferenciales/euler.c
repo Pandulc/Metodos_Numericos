@@ -2,7 +2,7 @@
 #include <math.h>
 
 double f(double x, double y) {
-    return (2*x+1)* sqrt(y);
+    return exp(-2*x)-2*y;
 }
 
 int main(int argc, char *argv[]) {
@@ -40,10 +40,10 @@ int main(int argc, char *argv[]) {
         y[i + 1] = y[i] + h * f(x[i], y[i]);
         x[i + 1] = x[i] + h;
 
-        fprintf(file, "%lf\t%lf\n", x[i], y[i]);
+        fprintf(file, "%lf\t%E\n", x[i], y[i]);
 
     }
 
-    fprintf(file, "%lf\t%lf\n", x[n], y[n]);
+    fprintf(file, "%lf\t%E\n", x[n], y[n]);
 
 }

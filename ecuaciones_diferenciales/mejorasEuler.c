@@ -11,7 +11,7 @@ void middlePoint();
 void rk4();
 
 double f(double x, double y) {
-    return (2 * x + 1) * sqrt(y);
+    return ;
 }
 
 int main(int argc, char *argv[]) {

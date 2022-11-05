@@ -8,6 +8,8 @@ add_executable(eliminacion_gaussiana sistemas_ecuaciones_lineales/eliminacionGau
 add_executable(iterativos sistemas_ecuaciones_lineales/iterativos.c)
 add_executable(interpolacion interpolacion/interpolacion.c)
 add_executable(interpolacion_segmentaria interpolacion/interpolacionSegmentaria.c)
+add_executable(interpolacion_parisi interpolacion/InterpolacionSplines.cpp)
+add_executable(interpolacion_parisi_lec interpolacion/lectura_escritura_datos.cpp)
 add_executable(regresion regresion/regresion.c)
 add_executable(integracion integracion/newtonCotes.c)
 add_executable(integracionGauss integracion/gaussLegendre.c)

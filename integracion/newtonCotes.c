@@ -8,7 +8,7 @@ void trapeze();
 void simpson();
 
 double f(double x) {
-    return pow(x, 2) + 1;
+    return pow(1-x,3);
 }
 
 int main(int argc, char *argv[]) {
@@ -91,5 +91,5 @@ void simpson() {
 
     sum = (h / 3) * (sum + 4 * f(b - h));
 
-    printf("El valor de la integral es de: %lf", sum);
+    printf("El valor de la integral es de: %.30lf", sum);
 }

@@ -2,7 +2,7 @@
 #include <math.h>
 
 double f(double x) {
-    return 2 * pow(x, 3);
+    return (exp(x)* sin(x))/(1+ pow(x,2));
 }
 
 int main(int argc, char *argv[]) {
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
             case 2:
                 integral = ((b - a) / 2) *
                            (two[0] * f(((b - a) * two[2] + b + a) / 2) + two[1] * f(((b - a) * two[3] + b + a) / 2));
-                printf("El valor de la integral es: %lf\n", integral);
+                printf("El valor de la integral es: %.100lf\n", integral);
                 break;
             case 3:
                 integral = ((b - a) / 2) *
