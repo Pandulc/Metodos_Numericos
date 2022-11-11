@@ -8,7 +8,7 @@ void trapeze();
 void simpson();
 
 double f(double x) {
-    return pow(1-x,3);
+    return 3*pow(x,2)+1;
 }
 
 int main(int argc, char *argv[]) {
@@ -54,8 +54,21 @@ void trapeze() {
     scanf("%d", &intervals);
 
     double h = (b - a) / intervals;
-    double sum = f(a) + f(b);
 
+    /*double sum1, sum2, sum;
+    //Alternativa de calculo parcial II
+    for (int i = 1; i < intervals; ++i) {
+        sum1 = sum1 + h * f(a + i * h);
+    }
+    for (int i = 1; i < intervals; ++i) {
+        sum2 = sum2 + h * (f(a + (i + 1) * h) - f(a + i * h));
+    }
+    sum2 = sum2 / 2;
+    sum = sum1 + sum2;*/
+
+    //Metodo de trapecio compuesto original
+
+    double sum = f(a) + f(b);
     for (int i = 1; i < intervals; ++i) {
         sum = sum + 2 * f(a + i * h);
     }

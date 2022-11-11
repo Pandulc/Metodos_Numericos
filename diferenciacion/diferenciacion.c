@@ -13,7 +13,7 @@ void thirdOrder();
 void fourthOrder();
 
 double f(double x) {
-    return log(x) + 1 / x;
+    return ;
 }
 
 int main(int argc, char *argv[]) {

@@ -2,7 +2,7 @@
 #include <math.h>
 
 double f(double x, double y) {
-    return exp(-2*x)-2*y;
+    return (4*x*y)/(1+ pow(x,2));
 }
 
 int main(int argc, char *argv[]) {
@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     printf("Ingrese la cantidad de subintervalos (n) \n");
     scanf("%d", &n);
 
-    double xf, x[n + 1], y[n + 1], y2[n + 1], y3[n + 1], Q[n + 1], yp, xp, h;
+    double xf, x[n + 1], y[n + 1], h;
 
     printf("Ingrese el valor inicial (x0) \n");
     scanf("%lf", &x[0]);
@@ -20,8 +20,6 @@ int main(int argc, char *argv[]) {
     scanf("%lf", &xf);
     printf("Ingrese el dato inicial (y0) \n");
     scanf("%lf", &y[0]);
-
-    y2[0] = y3[0] = y[0];
 
     h = (xf - x[0]) / n;
 
@@ -34,16 +32,31 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    //Metodo Parcial
 
     for (int i = 0; i < n; ++i) {
+
+        if (i == 0) {
+            y[i + 1] = y[i] + h * f(x[i], y[i]);
+            x[i + 1] = x[i] + h;
+        } else {
+            y[i + 1] = y[i] + h * (2 * f(x[i], y[i]) - f(x[i - 1], y[i - 1]));
+            x[i + 1] = x[i] + h;
+        }
+
+        fprintf(file, "%lf\t%.12lf\n", x[i], y[i]);
+
+    }
+
+    /*for (int i = 0; i < n; ++i) {
 
         y[i + 1] = y[i] + h * f(x[i], y[i]);
         x[i + 1] = x[i] + h;
 
         fprintf(file, "%lf\t%E\n", x[i], y[i]);
 
-    }
+    }*/
 
-    fprintf(file, "%lf\t%E\n", x[n], y[n]);
+    fprintf(file, "%lf\t%.12lf\n", x[n], y[n]);
 
 }

@@ -2,7 +2,7 @@
 #include <math.h>
 
 double f(double x) {
-    return (exp(x)* sin(x))/(1+ pow(x,2));
+    return ;
 }
 
 int main(int argc, char *argv[]) {
