@@ -2,7 +2,7 @@
 #include <math.h>
 
 double f(double x) {
-    return ;
+    return (exp(sqrt(1+x))*log(1+2*pow(x,2)))/(2*sqrt(1+x))+(4*exp(sqrt(1+x))*x)/(1+2*pow(x,2));
 }
 
 int main(int argc, char *argv[]) {
