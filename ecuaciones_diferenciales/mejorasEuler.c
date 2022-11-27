@@ -31,9 +31,6 @@ int main(int argc, char *argv[]) {
             case 3:
                 rk4();
                 break;
-            case 4:
-
-                break;
             default:
                 printf("La opcion ingresada no es valida. Porfavor ingrese una opcion valida\n");
                 break;
@@ -86,7 +83,7 @@ void heun() {
         y = y + h * (f(xv, y) + f(xn, yt)) / 2;
         xv = xn;
 
-        fprintf(file, "%lf\t%lf\n", xn, y);
+        fprintf(file, "\t\t%lf\t%lf\n", xn, y);
     }
 
 }

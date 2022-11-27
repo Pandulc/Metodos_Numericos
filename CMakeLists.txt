@@ -18,6 +18,7 @@ add_executable(diferenciacion diferenciacion/diferenciacion.c)
 add_executable(diferenciacionTabla diferenciacion/diferenciacionTabla.c)
 add_executable(EDOEuler ecuaciones_diferenciales/euler.c)
 add_executable(EDOOtros ecuaciones_diferenciales/mejorasEuler.c)
+add_executable(SistemaEDOs ecuaciones_diferenciales/sistemaEDOs.c)
 add_executable(auxiliar examenes/codigoAux.c)
 
 
@@ -33,5 +34,6 @@ target_link_libraries(diferenciacion m)
 target_link_libraries(diferenciacionTabla m)
 target_link_libraries(EDOEuler m)
 target_link_libraries(EDOOtros m)
+target_link_libraries(SistemaEDOs m)
 target_link_libraries(auxiliar m)
 
