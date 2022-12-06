@@ -2,7 +2,7 @@
 #include <math.h>
 
 double f(double x) {
-    return exp(sqrt(1+x))*log(1+ 2*pow(x,2));
+    return exp(sqrt(1 + x)) * log(1 + 2 * pow(x, 2));
 }
 
 int main(int argc, char *argv[]) {
@@ -26,8 +26,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    for (int i = 0; i < n+1; ++i) {
-        x = x0 + i*h;
+    for (int i = 0; i < n + 1; ++i) {
+        x = x0 + i * h;
         result = f(x);
 
         fprintf(file, "%lf\t%lf\n", x, result);

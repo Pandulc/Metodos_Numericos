@@ -2,8 +2,8 @@
 #include <math.h>
 
 #define MAXCOL 2
-#define MAXCOLM 10
-#define MAXROW 10
+#define MAXCOLM 100
+#define MAXROW 100
 
 void readTxtI(double[MAXROW][MAXCOL], int *);
 
@@ -129,6 +129,7 @@ void error (double a[MAXROW], double n[MAXROW][MAXCOL], int p, int rows){
     ecm = sqrt(e/rows);
     printf("El error es de: %lf\n", e);
     printf("El error cuadratico medio es de: %lf\n", ecm);
+    printf("st: %lf\n", st);
     printf("El coeficiente de correlacion es: %lf\n", r);
 }
 

@@ -2,10 +2,18 @@
 #include <math.h>
 
 double f(double x) {
-    return (exp(sqrt(1+x))*log(1+2*pow(x,2)))/(2*sqrt(1+x))+(4*exp(sqrt(1+x))*x)/(1+2*pow(x,2));
+    return (exp(sqrt(1 + x)) * log(1 + 2 * pow(x, 2))) / (2 * sqrt(1 + x)) +
+           (4 * exp(sqrt(1 + x)) * x) / (1 + 2 * pow(x, 2));
+}
+
+double function(double x, double v) {
+    return 10 * exp(0.05 * v * pow(x, 0.02));
 }
 
 int main(int argc, char *argv[]) {
+    //Case 7: escritura en archivo
+    FILE *readPtr;
+
     int points;
     double integral, a, b;
     double two[] = {1, 1, -0.577350269, 0.577350269};
@@ -65,6 +73,16 @@ int main(int argc, char *argv[]) {
                             six[4] * f(((b - a) * six[10] + b + a) / 2) +
                             six[5] * f(((b - a) * six[11] + b + a) / 2));
                 printf("El valor de la integral es: %lf\n", integral);
+                break;
+            case 7:
+                readPtr = fopen("data.txt", "w");
+                for (int i = 0; i < 21; ++i) {
+                    integral = ((b - a) / 2) *
+                               (three[0] * function(((b - a) * three[3] + b + a) / 2, 2.5*i) +
+                                three[1] * function(((b - a) * three[4] + b + a) / 2, 2.5*i) +
+                                three[2] * function(((b - a) * three[5] + b + a) / 2, 2.5*i));
+                    fprintf(readPtr, "%lf\t%lf\n", 2.5*i, integral);
+                }
                 break;
             default:
                 printf("La opcion ingresada no es valida. Porfavor ingrese una opcion valida\n");

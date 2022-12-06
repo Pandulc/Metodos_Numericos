@@ -57,10 +57,10 @@ void trapeze() {
 
     /*double sum1, sum2, sum;
     //Alternativa de calculo parcial II
-    for (int i = 1; i < intervals; ++i) {
+    for (int i = 0; i < intervals; ++i) {
         sum1 = sum1 + h * f(a + i * h);
     }
-    for (int i = 1; i < intervals; ++i) {
+    for (int i = 0; i < intervals; ++i) {
         sum2 = sum2 + h * (f(a + (i + 1) * h) - f(a + i * h));
     }
     sum2 = sum2 / 2;

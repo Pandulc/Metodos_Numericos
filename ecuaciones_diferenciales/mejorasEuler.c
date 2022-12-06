@@ -11,7 +11,11 @@ void middlePoint();
 void rk4();
 
 double f(double x, double y) {
-    return (4*x*y)/(1+ pow(x,2));
+    return (4*y- pow(x,2))*y;
+}
+
+double F(double x){
+    return 0;
 }
 
 int main(int argc, char *argv[]) {

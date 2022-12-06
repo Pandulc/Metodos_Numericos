@@ -2,7 +2,11 @@
 #include <math.h>
 
 double f(double x, double y) {
-    return (4*x*y)/(1+ pow(x,2));
+    return (4*y- pow(x,2))*y;
+}
+
+double F(double x){
+    return 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -32,9 +36,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    fprintf(file, "  x[i]\t\t\ty[i]\t\t\tV. Ex\t\t  e ex\n");
+
     //Metodo Parcial
 
-    for (int i = 0; i < n; ++i) {
+    /*for (int i = 0; i < n; ++i) {
 
         if (i == 0) {
             y[i + 1] = y[i] + h * f(x[i], y[i]);
@@ -46,17 +52,17 @@ int main(int argc, char *argv[]) {
 
         fprintf(file, "%lf\t%.12lf\n", x[i], y[i]);
 
-    }
+    }*/
 
-    /*for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
 
         y[i + 1] = y[i] + h * f(x[i], y[i]);
         x[i + 1] = x[i] + h;
 
-        fprintf(file, "%lf\t%E\n", x[i], y[i]);
+        fprintf(file, "%lf\t%E\t%E\t%E\n", x[i], y[i], F(x[i]), fabs(y[i] - F(x[i])));
 
-    }*/
+    }
 
-    fprintf(file, "%lf\t%.12lf\n", x[n], y[n]);
+    fprintf(file, "%lf\t%E\t%E\t%E\n", x[n], y[n], F(x[n]), fabs(y[n] - F(x[n])));
 
 }

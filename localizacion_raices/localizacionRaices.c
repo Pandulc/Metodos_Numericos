@@ -22,11 +22,11 @@ void secante();
 // DEFINICION DE f(x)
 
 double funcion(double x) {
-    return ;
+    return -0.952854-0.206982 * x  + 2.12295 * pow(x,2);
 }
 
 double funcionAux(double x) {
-    return ;
+    return (-sin(x) + exp(x)) / 3;
 }
 
 int main(int argc, char *argv[]) {
@@ -159,7 +159,10 @@ void puntoFijo() {
     scanf("%lf", &tolerancia);
     tolerancia = pow(10, -tolerancia);
     do {
-        double lim = (funcionAux(cv + (0.01)) - funcionAux(cv)) / (0.01);
+        //double lim = (funcionAux(cv + (0.01)) - funcionAux(cv)) / (0.01);
+
+        //Limite primer parcial
+        double lim = (funcionAux(cv + (0.01)) - funcionAux(cv - 0.01)) / (2 * 0.01);
         if (fabs(lim) >= 1) {
             printf("El metodo diverge (|g'(x)|>1)");
             break;
@@ -185,12 +188,29 @@ void newton_raphson() {
     printf("Ingrese la cantidad de cifras decimales de error\n");
     scanf("%lf", &tolerancia);
     tolerancia = pow(10, -tolerancia);
+
     do {
-        if (fabs(funcionAux(cv)) < (0.00001)) {
+        // Calculo por derivada exacta
+        /*if (fabs(funcionAux(cv)) < (0.00001)) {
+            printf("El metodo diverge (|f'(x)| cercano a 0)");
+            break;
+        }*/
+
+        // Calculo por limite
+        double lim = (funcion(cv + (0.01)) - funcion(cv)) / (0.01);
+
+        // Limite usado primer parcial
+        // double lim = (funcion(cv + 0.01) - funcion(cv - 0.01)) / (2 * 0.01);
+
+        if (fabs(lim) < (0.00001)) {
             printf("El metodo diverge (|f'(x)| cercano a 0)");
             break;
         }
-        cn = cv - (funcion(cv) / funcionAux(cv));
+        //Calculo con derivada exacta
+        //cn = cv - (funcion(cv) / funcionAux(cv));
+
+        //Calculo con limite
+        cn = cv - (funcion(cv) / lim);
         e = fabs(cn - cv);
         cv = cn;
         iteracion++;

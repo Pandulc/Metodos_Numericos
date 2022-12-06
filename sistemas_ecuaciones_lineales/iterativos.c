@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXCOL 15
-#define MAXROW 15
+#define MAXCOL 20
+#define MAXROW 20
 
 int menu();
 
@@ -222,7 +222,7 @@ void gauss_seidel(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int colu
     double xn[MAXROW] = {0, 0, 0, 0, 0};
     double tolerance;
     printf("Ingrese la cantidad de cifras decimales de exactitud\n");
-    scanf("%lf", tolerance);
+    scanf("%lf", &tolerance);
     tolerance = pow(10, -tolerance);
     double error;
     int iterations = 0;
@@ -237,6 +237,7 @@ void gauss_seidel(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int colu
         }
         if (fabs(m[i][i]) <= sum) {
             printf("La matriz no es diagonalmente dominante\n");
+            break;
         }
     }
 
@@ -302,7 +303,7 @@ void gauss_seidel(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int colu
             printf("Numero maximo de iteraciones alcanzado\n");
         }
 
-    } while (error > tolerance && iterations < 10000);
+    } while (error > tolerance && iterations < 9999);
 
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {
@@ -357,7 +358,7 @@ void relajacion(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int column
             printf("Numero maximo de iteraciones alcanzado\n");
         }
 
-    } while (error > tolerance && iterations < 10000);
+    } while (error > tolerance && iterations < 9999);
 
     printf("Conjunto solucion: \n");
     for (int i = 0; i < rows; ++i) {

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXROW 7
+#define MAXROW 10
 #define MAXCOL 2
 
 int menu();

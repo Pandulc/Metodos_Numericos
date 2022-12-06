@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXTAM 150
+#define MAXTAM 102
 
 int menu();
 
@@ -10,11 +10,11 @@ void euler();
 void rk4();
 
 double f1(double x, double y1, double y2, double y3) {
-    return 3 * x + y2;
+    return -y1 * x + 4 * sin(x);
 }
 
 double f2(double x, double y1, double y2, double y3) {
-    return pow(x, 2) - y1 - 1;
+    return -y1 + 4 * cos(x);
 }
 
 double f3(double x, double y1, double y2, double y3) {
@@ -92,6 +92,7 @@ void euler() {
         y2[i + 1] = y2[i] + h * f2(x[i], y1[i], y2[i], y3[i]);
         y3[i + 1] = y3[i] + h * f3(x[i], y1[i], y2[i], y3[i]);
         fprintf(file, "%lf\t%lf\t%lf\t%lf\n", x[i], y1[i], y2[i], y3[i]);
+        //fprintf(file, "%lf\t%lf\n", x[i], y2[i]);
 
     }
 
@@ -160,6 +161,7 @@ void rk4() {
         y3[i] = y3[i - 1] + h * (k1[2] + 2. * k2[2] + 2. * k3[2] + k4[2]) / 6.;
 
         fprintf(file, "%lf\t%lf\t%lf\t%lf\n", x[i], y1[i], y2[i], y3[i]);
+        //fprintf(file, "%lf\t%lf\n", x[i], y1[i]);
     }
 
 

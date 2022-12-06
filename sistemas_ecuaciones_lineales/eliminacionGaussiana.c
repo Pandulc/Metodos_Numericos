@@ -91,6 +91,7 @@ void pivot(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns, in
         for (int j = i + 1; j < rows; ++j) {
             if (fabs(m[j][i]) > fabs(m[i][i])) {
                 for (int k = i; k < columns; ++k) {
+                    printf("Se realizo pivoteo\n");
                     double swap = m[i][k];
                     m[i][k] = m[j][k];
                     m[j][k] = swap;
@@ -133,6 +134,7 @@ double norma(double m[MAXROW][MAXCOL], double b[MAXROW], int rows, int columns) 
 }
 
 /*void banda(double m[MAXROW][MAXCOL], double b[MAXROW], int *rows, int *columns) {
+    printf("Recuerde haber definido el tamanio maximo de la matriz en MAXCOL y MAXROW");
     *rows = MAXROW;
     *columns = MAXCOL;
     for (int i = 0; i < MAXROW; i++) {
@@ -159,6 +161,7 @@ void save(double m[MAXCOL][MAXROW], double b[MAXROW]) {
     FILE *readPtr;
     int j, i;
     readPtr = fopen("data.txt", "w");
+    fprintf(readPtr, "%d\n", MAXROW);
     for (i = 0; i < MAXROW; i++) {
         for (j = 0; j < MAXCOL; j++) {
             fprintf(readPtr, "%.2lf\t", m[i][j]);
